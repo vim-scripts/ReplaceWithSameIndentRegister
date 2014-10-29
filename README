@@ -1,0 +1,27 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=5046
+
+DESCRIPTION
+Replacing existing lines with the contents of a register is a very common task
+during editing. Often, one wants to adapt the indent of the pasted lines to
+the current indent, e.g. when replacing a nested conditional from a yank that
+originated at a different nesting level.
+
+This plugin combines the replacement functionality of the
+ReplaceWithRegister.vim plugin with the indent-adjustment done by the
+built-in ]p command. With a simple mapping, you can replace line(s) with the
+contents of a register while adjusting the indent to that of the first
+replaced line.
+
+SEE ALSO
+- ReplaceWithRegister.vim (vimscript #2703) implements the general case of
+  replacing text including the indent (also with a {motion} mapping for
+  arbitrary text, not just lines).
+
+USAGE
+[count]["x]grR          Replace [count] lines with the contents of register x
+                        and adjust the indent to the first replaced line (like
+                        pasting with ]p).
+{Visual}["x]gR          Replace the selection with the contents of register x
+                        and adjust the indent to the first selected line.
+                        As the replacement is always entire lines, this only
+                        works with linewise selections (V).

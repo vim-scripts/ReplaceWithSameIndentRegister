@@ -1,0 +1,100 @@
+*ReplaceWithSameIndentRegister.txt*	Replace lines with the contents of a register, keeping the original indent.
+
+	     REPLACE WITH SAME INDENT REGISTER    by Ingo Karkat
+					   *ReplaceWithSameIndentRegister.vim*
+description			|ReplaceWithSameIndentRegister-description|
+usage				|ReplaceWithSameIndentRegister-usage|
+installation			|ReplaceWithSameIndentRegister-installation|
+configuration			|ReplaceWithSameIndentRegister-configuration|
+limitations			|ReplaceWithSameIndentRegister-limitations|
+known problems			|ReplaceWithSameIndentRegister-known-problems|
+todo				|ReplaceWithSameIndentRegister-todo|
+history				|ReplaceWithSameIndentRegister-history|
+
+==============================================================================
+DESCRIPTION			   *ReplaceWithSameIndentRegister-description*
+
+Replacing existing lines with the contents of a register is a very common task
+during editing. Often, one wants to adapt the indent of the pasted lines to
+the current indent, e.g. when replacing a nested conditional from a yank that
+originated at a different nesting level.
+
+This plugin combines the replacement functionality of the
+|ReplaceWithRegister.vim| plugin with the indent-adjustment done by the
+built-in |]p| command. With a simple mapping, you can replace line(s) with the
+contents of a register while adjusting the indent to that of the first
+replaced line.
+
+SEE ALSO								     *
+
+- ReplaceWithRegister.vim (vimscript #2703) implements the general case of
+  replacing text including the indent (also with a {motion} mapping for
+  arbitrary text, not just lines).
+
+==============================================================================
+USAGE					 *ReplaceWithSameIndentRegister-usage*
+
+								  *grR* *v_gR*
+[count]["x]grR		Replace [count] lines with the contents of register x
+			and adjust the indent to the first replaced line (like
+			pasting with |]p|).
+{Visual}["x]gR		Replace the selection with the contents of register x
+			and adjust the indent to the first selected line.
+			As the replacement is always entire lines, this only
+			works with linewise selections (|V|).
+
+==============================================================================
+INSTALLATION			  *ReplaceWithSameIndentRegister-installation*
+
+This script is packaged as a |vimball|. If you have the "gunzip" decompressor
+in your PATH, simply edit the *.vmb.gz package in Vim; otherwise, decompress
+the archive first, e.g. using WinZip. Inside Vim, install by sourcing the
+vimball or via the |:UseVimball| command. >
+    vim ReplaceWithSameIndentRegister*.vmb.gz
+    :so %
+To uninstall, use the |:RmVimball| command.
+
+DEPENDENCIES			  *ReplaceWithSameIndentRegister-dependencies*
+
+- Requires Vim 7.0 or higher.
+- Requires the |ingo-library.vim| plugin (vimscript #4433), version 1.000 or
+  higher.
+- repeat.vim (vimscript #2136) plugin (optional)
+  To support repetition with a register other than the default register, you
+  need version 1.1 or later.
+- visualrepeat.vim (vimscript #3848) plugin (version 2.00 or higher; optional)
+
+==============================================================================
+CONFIGURATION			 *ReplaceWithSameIndentRegister-configuration*
+					 *ReplaceWithSameIndentRegister-remap*
+If you want to use different mappings, map your keys to the
+<Plug>ReplaceWithSameIndentRegister... mapping targets _before_ sourcing the
+script (e.g. in your |vimrc|): >
+    nmap <Leader>R  <Plug>ReplaceWithSameIndentRegisterLine
+    xmap <Leader>R  <Plug>ReplaceWithSameIndentRegisterVisual
+<
+==============================================================================
+LIMITATIONS			   *ReplaceWithSameIndentRegister-limitations*
+
+KNOWN PROBLEMS			*ReplaceWithSameIndentRegister-known-problems*
+
+TODO					  *ReplaceWithSameIndentRegister-todo*
+
+IDEAS					 *ReplaceWithSameIndentRegister-ideas*
+
+==============================================================================
+HISTORY				       *ReplaceWithSameIndentRegister-history*
+
+1.00	29-Oct-2014
+First published version.
+
+0.01	21-Mar-2013
+Started development.
+
+==============================================================================
+Copyright: (C) 2013-2014 Ingo Karkat
+The VIM LICENSE applies to this plugin; see |copyright|.
+
+Maintainer:	Ingo Karkat <ingo@karkat.de>
+==============================================================================
+ vim:tw=78:ts=8:ft=help:norl:
